@@ -25,10 +25,10 @@ function player.physics(dt) -- makes the player not stop instanly
 end
 
 
-function player.move(dt) -- 
+function player.move(dt) -- moves player left or right depending on user input
 	if love.keyboard.isDown('d','right') and 
 	player.xvel < player.speed then
-		player.xvel = player.xvel + player.speed * dt
+		player.xvel = player.xvel + player.speed * dt -- when holding the button increases speed every update untill max speed is met
 	end
 	if love.keyboard.isDown('a','left') and
 	player.xvel > -player.speed then
@@ -36,18 +36,38 @@ function player.move(dt) --
 	end
 end
 
-function player.enemy_hit()
+function player.enemy_hit() -- if enemy hits player exits game/ shows exit screen
 	for i,v in ipairs(enemies) do 
-		if player.x + 20 > v.x and
-		player.x < v.x + 16 and
-		player.y + 20 > v.y and
-		player.y < v.y + 16 then
+		if player.x + 20 >= v.x and
+		player.x <= v.x + 16 and
+		player.y + 20 >= v.y and
+		player.y <= v.y + 16 then
 			love.event.quit()
 		end
 	end
 end
+function player.powerup_hit() -- if player hits powerup increases ammo and deletes the powerup
+	for i,v in ipairs(powerup_ammo) do
+		if player.x + 20 >= v.x and
+		player.x <= v.x + 16 and
+		player.y + 20 >= v.y and
+		player.y <= v.y + 16 then
+			ammo = ammo + 5
+			table.remove(powerup_ammo, i) -- removes powerup from the table
+		end
+	end
+	for i,v in ipairs(powerup_score) do -- if player hits powerup increases score and deletes powerup
+		if player.x + 20 >= v.x and
+		player.x <= v.x + 16 and
+		player.y + 20 >= v.y and
+		player.y <= v.y + 16 then
+			score = score + 500
+			table.remove(powerup_score, i) -- removes powerup from the table
+		end
+	end
+end
 
-function player.boundary() -- stops the player from going off screen ( left side )
+function player.boundary() -- if player hits side of screen this moves them to the other side
 	if player.x < 0  then 
 		player.x = 600
 	end

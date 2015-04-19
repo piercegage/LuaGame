@@ -7,7 +7,7 @@ function missile.load()
 	missile.img = love.graphics.newImage('bullet.png')
 	missile.width = 5
 	missile.height = 5
-	missile.speed = 200
+	missile.speed = 300
  	missile.dx = 0
  	missile.dy = 0
 end

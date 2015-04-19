@@ -1,44 +1,55 @@
 require "player"
 require "missile"
 require "enemy"
+require "powerup"
 
+score = 0
+ammo = 20
 
 function love.load()
-	love.graphics.setBackgroundColor(255,255,255)
-	background = love.graphics.newImage('background.png')
+	love.graphics.setBackgroundColor(255,255,255) --sets background to clear
+	background = love.graphics.newImage('background.png') -- puts the background image
 	missile.load()
 	player.load()
 	enemy.load()
+	powerup.load()
 end
 
-function love.mousepressed(x, y, button)
-
+function love.mousepressed(x, y, button) -- on left mouse click spawns a new missile
 	if button == "l" then
-		local strX = player.x + player.width / 2
-		local strY = player.y - 3
-		local mouseX = x
-		local mouseY = y
+		if ammo == 0 then -- if no ammo it doesn't fire
+		else
+			ammo = ammo - 1 --reduces ammo
+			local strX = player.x + player.width / 2
+			local strY = player.y - 3
+			local mouseX = x
+			local mouseY = y
 
-		local angle = math.atan2((mouseY - strY), (mouseX - strX))
+			local angle = math.atan2((mouseY - strY), (mouseX - strX)) -- finds the angle or slope of fire
     
 
-		missile.dx = missile.speed * math.cos(angle)
-		missile.dy = missile.speed * math.sin(angle)
+			missile.dx = missile.speed * math.cos(angle) -- finds x movement 
+			missile.dy = missile.speed * math.sin(angle) -- finds y movement
 
-		table.insert(missiles, {x = strX, y = strY, dx = missile.dx, dy = missile.dy, img = missile.img })
+			table.insert(missiles, {x = strX, y = strY, dx = missile.dx, dy = missile.dy, img = missile.img })
+			-- table.insert makes new missile in the missiles table
+		end
 	end
 end
 
-function love.update(dt)
+function love.update(dt) -- updates the functions
 	UPDATE_MISSILE(dt)
 	UPDATE_PLAYER(dt)
 	UPDATE_ENEMY(dt)
+	UPDATE_POWERUP(dt)
+	score = score + 10 * dt -- adds score every update 
 end
 
-function love.draw()
+function love.draw() -- draws all objects/ textures
 	love.graphics.draw(background)
 	DRAW_PLAYER()
 	DRAW_MISSILE()
 	DRAW_ENEMY()
+	DRAW_POWERUP()
 end
 
