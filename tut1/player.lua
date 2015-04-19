@@ -24,7 +24,6 @@ function player.physics(dt) -- makes the player not stop instanly
 	player.xvel = player.xvel * (1- math.min(dt * player.friction, 1)) 
 end
 
-
 function player.move(dt) -- moves player left or right depending on user input
 	if love.keyboard.isDown('d','right') and 
 	player.xvel < player.speed then
@@ -47,22 +46,22 @@ function player.enemy_hit() -- if enemy hits player exits game/ shows exit scree
 	end
 end
 function player.powerup_hit() -- if player hits powerup increases ammo and deletes the powerup
-	for i,v in ipairs(powerup_ammo) do
+	for i,v in ipairs(powerups_ammo) do
 		if player.x + 20 >= v.x and
 		player.x <= v.x + 16 and
 		player.y + 20 >= v.y and
 		player.y <= v.y + 16 then
 			ammo = ammo + 5
-			table.remove(powerup_ammo, i) -- removes powerup from the table
+			table.remove(powerups_ammo, i) -- removes powerup from the table
 		end
 	end
-	for i,v in ipairs(powerup_score) do -- if player hits powerup increases score and deletes powerup
+	for i,v in ipairs(powerups_score) do -- if player hits powerup increases score and deletes powerup
 		if player.x + 20 >= v.x and
 		player.x <= v.x + 16 and
 		player.y + 20 >= v.y and
 		player.y <= v.y + 16 then
 			score = score + 500
-			table.remove(powerup_score, i) -- removes powerup from the table
+			table.remove(powerups_score, i) -- removes powerup from the table
 		end
 	end
 end
@@ -82,6 +81,7 @@ function UPDATE_PLAYER(dt) -- compiles the needed update functions for player in
 	player.move(dt)
 	player.boundary()
 	player.enemy_hit()
+	player.powerup_hit()
 end
 function DRAW_PLAYER()
 	player.draw()

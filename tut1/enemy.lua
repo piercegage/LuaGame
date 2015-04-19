@@ -11,7 +11,7 @@ function enemy.load()
 	enemy.speed = math.random(100,250) 
 	enemy.width = 16
 	enemy.height = 16
-	enemy.health = 2
+	enemy.health = 10
 end
 
 function enemy.generate(dt) -- spawns new enemies

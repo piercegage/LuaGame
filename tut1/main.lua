@@ -4,7 +4,7 @@ require "enemy"
 require "powerup"
 
 score = 0
-ammo = 20
+ammo = 5
 
 function love.load()
 	love.graphics.setBackgroundColor(255,255,255) --sets background to clear
@@ -15,7 +15,7 @@ function love.load()
 	powerup.load()
 end
 
-function love.mousepressed(x, y, button) -- on left mouse click spawns a new missile
+--[[function love.mousepressed(x, y, button) -- on left mouse click spawns a new missile
 	if button == "l" then
 		if ammo == 0 then -- if no ammo it doesn't fire
 		else
@@ -36,8 +36,16 @@ function love.mousepressed(x, y, button) -- on left mouse click spawns a new mis
 		end
 	end
 end
+--]]
 
 function love.update(dt) -- updates the functions
+	
+	if love.keyboard.isDown(" ") and ammo >= 1  then -- fires missile is space is hit
+		ammo = ammo - 1
+		missile.spawn(player.x, player.y)
+	end
+    ammo = ammo + 0.05 -- ammo comes back slowly
+
 	UPDATE_MISSILE(dt)
 	UPDATE_PLAYER(dt)
 	UPDATE_ENEMY(dt)
