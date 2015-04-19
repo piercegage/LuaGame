@@ -8,6 +8,7 @@ function love.load()
 	background = love.graphics.newImage('background.png')
 	missile.load()
 	player.load()
+	enemy.load()
 end
 
 function love.mousepressed(x, y, button)
@@ -31,11 +32,13 @@ end
 function love.update(dt)
 	UPDATE_MISSILE(dt)
 	UPDATE_PLAYER(dt)
+	UPDATE_ENEMY(dt)
 end
 
 function love.draw()
 	love.graphics.draw(background)
 	DRAW_PLAYER()
 	DRAW_MISSILE()
+	DRAW_ENEMY()
 end
 
