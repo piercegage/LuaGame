@@ -25,7 +25,7 @@ function love.mousepressed(x, y, button)
 		missile.dx = missile.speed * math.cos(angle)
 		missile.dy = missile.speed * math.sin(angle)
 
-		table.insert(missiles, {x = strX, y = strY, dx = missile.dx, dy = missile.dy, img = missile.img})
+		table.insert(missiles, {x = strX, y = strY, dx = missile.dx, dy = missile.dy, img = missile.img })
 	end
 end
 
