@@ -13,6 +13,8 @@ function love.load()
 	player.load()
 	enemy.load()
 	powerup.load()
+  music = love.audio.newSource("blueducks.mp3","stream") 
+  love.audio.play(music)
 end
 
 --[[function love.mousepressed(x, y, button) -- on left mouse click spawns a new missile
