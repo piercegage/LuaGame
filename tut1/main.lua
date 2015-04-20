@@ -45,11 +45,13 @@ function love.update(dt) -- updates the functions
 		if love.keyboard.isDown(" ") and ammo >= timer then -- fires missile if space is hit
 			if rapidShoot ~= 0 and rapidShoot > 0 then
 				rapidShoot = rapidShoot - .05
+				missile.spawn(player.x,player.y,"Rapid")
 			else
 				rapidShoot = 0
 				ammo = 0
+				missile.spawn(player.x, player.y, "Normal")
 			end
-			missile.spawn(player.x, player.y)
+			
 			
 		end
    			ammo = ammo + dt

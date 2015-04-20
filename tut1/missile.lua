@@ -16,10 +16,18 @@ function missile.draw()
 		love.graphics.draw(missile.img,v.x,v.y) -- draws missle img at the correct x and y corrdinates
 	end
 end
-function missile.spawn(x,y)
-  missileSound = love.audio.newSource("gunsound.mp3","static") 
-    love.audio.play(missileSound)
+function missile.spawn(x,y,type)
+  	missileSound = love.audio.newSource("gunsound.mp3","static")
+  	if type == "Normal" then 
+    	missileSound:setVolume(0.3)
+    	love.audio.play(missileSound)
 		table.insert(missiles, {x = x, y = y, img = missile.img })
+	else
+		missileSound:setVolume(0.1)
+		love.audio.play(missileSound)
+		table.insert(missiles, {x = x, y = y, img = missile.img })
+	end
+
 end
 
 function missile.move(dt)
