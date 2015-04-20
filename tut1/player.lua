@@ -37,11 +37,11 @@ end
 
 function player.enemy_hit() -- if enemy hits player exits game/ shows exit screen
 	for i,v in ipairs(enemies) do 
-		if player.x + 20 >= v.x and
-		player.x <= v.x + 16 and
+		if player.x + 18 >= v.x and
+		player.x <= v.x + 58 and
 		player.y + 20 >= v.y and
-		player.y <= v.y + 16 then
-			love.event.quit()
+		player.y <= v.y + 60 then
+			gamestate = "end"
 		end
 	end
 end
