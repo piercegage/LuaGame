@@ -9,6 +9,7 @@ score = 0
 ammo = 0
 timer = .5
 rapidShoot = 0
+muted = false
 
 function love.load()
 	fontSize = love.graphics.newFont(30)
@@ -26,9 +27,11 @@ function love.load()
  	music:setLooping(true)
   	love.audio.play(music)
 
+  	button_spawn(100, 100, "Asteroid Run")
   	button_spawn(100, 200, "Start")
   	button_spawn(100, 230, "How to play")
-  	button_spawn(100, 260, "Quit")
+  	button_spawn(100, 290, "Mute")
+  	button_spawn(100, 330, "Quit")
 end
 
 function love.mousepressed(x,y)
@@ -113,10 +116,10 @@ function love.draw() -- draws all objects/ textures
 		love.graphics.setColor(255,255,255)
 		love.graphics.draw(background)
 		love.graphics.setColor(0,0,255)
-		love.graphics.print("Final Score: ", 120, 260)
-		love.graphics.print(score, 300, 260)
-		button_spawn(120, 330, "Quit")
-		button_spawn(120, 370, "Restart")
+		love.graphics.print("Final Score: ", 100, 260)
+		love.graphics.print(score, 280, 260)
+		button_spawn(100, 330, "Quit")
+		button_spawn(100, 370, "Restart")
 		DRAW_MENU()
 	end
 end

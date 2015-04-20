@@ -30,6 +30,11 @@ function button_click(x,y)
 					end
 					gamestate = "playing"
 				end
+				if v.text == "Mute" then
+					music:setVolume(0.0)
+ 					music:setLooping(false)
+ 					muted = true
+ 				end
 				if v.text == "How to play" then
 					gamestate = "howto"
 				end

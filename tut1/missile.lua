@@ -19,12 +19,16 @@ end
 function missile.spawn(x,y,type)
   	missileSound = love.audio.newSource("gunsound.mp3","static")
   	if type == "Normal" then 
-    	missileSound:setVolume(0.3)
-    	love.audio.play(missileSound)
+    	if muted == false then
+    		missileSound:setVolume(0.3)
+    		love.audio.play(missileSound)
+		end
 		table.insert(missiles, {x = x, y = y, img = missile.img })
 	else
-		missileSound:setVolume(0.1)
-		love.audio.play(missileSound)
+		if muted == false then
+			missileSound:setVolume(0.1)
+			love.audio.play(missileSound)
+		end
 		table.insert(missiles, {x = x, y = y, img = missile.img })
 	end
 

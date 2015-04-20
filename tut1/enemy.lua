@@ -39,10 +39,11 @@ function enemy.missile_hit()
 			va.y + 5 >= v.y and
 			va.y <= v.y + 60 then
 				if v.health == 1 then
-        			rockshatter = love.audio.newSource("rockshatter.mp3","static") 
-        			rockshatter:setVolume(0.1)
-        			love.audio.play(rockshatter) 
-
+        			if muted == false then
+        				rockshatter = love.audio.newSource("rockshatter.mp3","static") 
+        				rockshatter:setVolume(0.1)
+        				love.audio.play(rockshatter)
+        			end
 					powerup.spawn(v.x, v.y, math.random(1,2)) -- generates powerup at location of dead enemy
 					table.remove(enemies,i) -- removes enemy that has been destroyed by missle
 					table.remove(missiles,ia) -- removes missle that hit the enemy
