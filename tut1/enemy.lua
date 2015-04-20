@@ -34,11 +34,13 @@ end
 function enemy.missile_hit()
 	for i,v in ipairs(enemies) do -- for loops go through all of the missles and enemies to see if any hit
 		for ia,va in ipairs(missiles) do
-			if va.x + 5 >= v.x and -- if statement tells if missle hits enemies
+			if va.x + 5 >= v.x and -- if statement tells if missle hits enemies     
 			va.x <= v.x + 60 and 
 			va.y + 5 >= v.y and
 			va.y <= v.y + 60 then
 				if v.health == 1 then
+        rockshatter = love.audio.newSource("rockshatter.mp3","static") 
+        love.audio.play(rockshatter) 
 					powerup.spawn(v.x, v.y, math.random(1,2)) -- generates powerup at location of dead enemy
 					table.remove(enemies,i) -- removes enemy that has been destroyed by missle
 					table.remove(missiles,ia) -- removes missle that hit the enemy

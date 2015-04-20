@@ -17,6 +17,8 @@ function missile.draw()
 	end
 end
 function missile.spawn(x,y)
+  missileSound = love.audio.newSource("gunsound.mp3","static") 
+    love.audio.play(missileSound)
 		table.insert(missiles, {x = x, y = y, img = missile.img })
 end
 
