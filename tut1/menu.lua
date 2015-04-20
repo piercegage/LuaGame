@@ -30,19 +30,20 @@ function button_click(x,y)
 					end
 					gamestate = "playing"
 				end
+				if v.text == "How to play" then
+					gamestate = "howto"
+				end
 				if v.text == "Restart" then
 					score = 0
 					ammo = 1
-					for i,v in ipairs(missiles) do
-						table.remove(missiles, i)
-					end	
-					for i,v in ipairs(powerups_ammo) do
-						table.remove(powerups_ammo, i)
-					end
-					for i,v in ipairs(powerups_score) do
-						table.remove(powerups_score, i)
-					end
+					powerups_score = {}
+					powerups_ammo = {}
+					enemies = {}
+
 					gamestate = "playing"
+				end
+				if v.text == "Menu" then
+					gamestate = "menu"
 				end
 		end
 	end	

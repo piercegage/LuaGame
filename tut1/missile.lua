@@ -13,7 +13,7 @@ function missile.load()
 function missile.draw()
 	love.graphics.setColor(255,255,255) -- sets background to be black so that img can be seen
 	for i,v in ipairs(missiles) do
-		love.graphics.draw(missile.img,v.x,v.y) -- draws missle img at the correct x and y corrdinates
+		love.graphics.draw(missile.img,v.x + 5,v.y) -- draws missle img at the correct x and y corrdinates
 	end
 end
 function missile.spawn(x,y,type)
