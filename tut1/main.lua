@@ -21,7 +21,7 @@ function love.load()
 	enemy.load()
 	powerup.load()
 
- 	music = love.audio.newSource("blueducks.mp3","stream") 
+ 	--music = love.audio.newSource("blueducks.mp3","stream") 
   	--love.audio.play(music)
 
   	button_spawn(100, 200, "Start")
@@ -41,8 +41,14 @@ end
 function love.update(dt) -- updates the functions
 	if gamestate == "playing" then
 		if love.keyboard.isDown(" ") and ammo >= timer then -- fires missile if space is hit
+			if rapidShoot ~= 0 and rapidShoot > 0 then
+				rapidShoot = rapidShoot - .05
+			else
+				rapidShoot = 0
+				ammo = 0
+			end
 			missile.spawn(player.x, player.y)
-			ammo = 0
+			
 		end
    			ammo = ammo + dt
    			 -- ammo comes back slowly
@@ -65,7 +71,8 @@ function love.draw() -- draws all objects/ textures
 		love.graphics.draw(background)
 
 		love.graphics.setColor(255,0,0)
-		love.graphics.print(ammo,10,40)
+		love.graphics.print("Rapid Fire: ", 10,40)
+		love.graphics.print(rapidShoot,170,40)
 
 		love.graphics.setColor(0,255,0)
 		love.graphics.print("Score: ", 10, 10)

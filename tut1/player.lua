@@ -51,7 +51,7 @@ function player.powerup_hit() -- if player hits powerup increases ammo and delet
 		player.x <= v.x + 16 and
 		player.y + 20 >= v.y and
 		player.y <= v.y + 16 then
-			ammo = ammo + 5
+			rapidShoot = rapidShoot + 2
 			table.remove(powerups_ammo, i) -- removes powerup from the table
 		end
 	end
