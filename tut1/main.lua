@@ -21,8 +21,10 @@ function love.load()
 	enemy.load()
 	powerup.load()
 
- 	--music = love.audio.newSource("blueducks.mp3","stream") 
-  	--love.audio.play(music)
+ 	music = love.audio.newSource("SpaceAtmosphere.mp3","stream") 
+ 	music:setVolume(0.3)
+ 	music:setLooping(true)
+  	love.audio.play(music)
 
   	button_spawn(100, 200, "Start")
   	button_spawn(100, 240, "Quit")
